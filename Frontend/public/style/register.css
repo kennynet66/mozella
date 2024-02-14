@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+}
+
+body {
+    background-image: url('https://wallpaperaccess.com/full/4567366.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+    
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 10px;
+}
+
+.logo > a {
+    font-weight: bold;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.logo > a:hover{
+    color: #000;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.links > li > a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.links > li > a :hover{
+    font-size: 20px;
+    font-weight: bold;
+    color: #dbdbdb;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.login-view {
+    display: flex;
+}
+
+.login-img {
+    object-fit: cover;
+    width: 300px;
+    max-height: inherit;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.login-form {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-div{
+    width: 100%;
+    margin-top: 10px;
+    margin: 5%;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#email, #password, #name {
+    width: 100%;
+    background-color: transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    border-bottom: 2px solid #000;
+}
+
+#password:focus, #email:focus, #name:focus {
+    background-color: #dbdbdb;
+    color: #ffffff;
+}
+
+.login-btn {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    background-color: yellowgreen;
+}
+
+.login-btn:hover {
+    background-color: rgb(147, 226, 28);
+}
+
+
+@media (max-width: 720px) {
+    body {
+        background-repeat: no-repeat;
+    }
+    .login-img {
+        display: none;
+    }
+    .login-form {
+        background-image: url("https://www.willenlake.org.uk/media/5980/football-pitches-media-banner-image.jpg?width=2048&format=webp");
+        border-radius: 10px;
+        color: #ffffff;
+        width: 300px;
+    }
+}
