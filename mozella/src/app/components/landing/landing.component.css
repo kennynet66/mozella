@@ -19,6 +19,5 @@
 
 .coach:hover {
   cursor: pointer;
-  transform: translate(150px);
-  transition: all;
+  transform: translate(30px);
 }
