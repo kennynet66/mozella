@@ -1,31 +1,35 @@
 <div class="container">
   <section class="content">
-      <div class="login-view">
-          <img class="login-img"
-              src="../../../assets/login_signup.webp"
-              alt="">
-          <div class="login-form">
-              <form id="login-form" autocomplete="off">
-                  <h1>Register</h1>
-                  <div class="input-div">
-                      <label for="name">Fullname:</label> <br>
-                      <input type="text" name="name" id="name" autocomplete="off">
-                  </div>
-                  <div class="input-div">
-                      <label for="email">Email:</label> <br>
-                      <input type="text" name="email" id="email" autocomplete="off">
-                  </div>
-                  <div class="input-div">
-                      <label for="email">Password:</label> <br>
-                      <input type="password" name="password" id="password" autocomplete="off"> </div>
-                      <div class="input-div">
-                          <input type="submit" value="Create Account" class="login-btn">
-                      </div>
-              </form>
-              <div class="options">
-                  <p><a href="./index.html">Already have an account?</a></p>
-              </div>
+    <div class="login-view">
+      <p-messages (value)="messages" [enableService]="false" [closable]="false"></p-messages>
+      <img class="login-img" src="../../../assets/login_signup.webp" alt="">
+      <div class="login-form">
+        <form [formGroup]="signupForm" id="login-form">
+          <h1 class="font-bold text-xl">Register</h1>
+          <div class="m-2">
+            <label for="username" >Username:</label><br>
+            <input name="username" type="text" placeholder="username" class="p-3 w-full rounded-md" formControlName="userName" />
+            <div *ngIf="signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched" class="text-red-600">Username is required</div>
           </div>
+          <div class="m-2">
+            <label for="email">Email:</label><br>
+            <input type="text" type="email" placeholder="email" class="p-3 rounded-md w-full" formControlName="email">
+            <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched && !signupForm.get('email')?.dirty" class="text-red-600">Email is required</div>
+            <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched && signupForm.get('email')?.dirty" class="text-red-600">invalid email format</div>
+          </div>
+          <div class="m-2">
+            <label for="password">Password:</label><br>
+            <input type="password" type="password" placeholder="password" class="p-3 w-full rounded-md" formControlName="password">
+            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-600">Password is required</div>
+          </div>
+          <div class="m-2">
+            <input type="submit" value="Create Account" class="p-2 w-full bg-green-500 rounded-md text-white hover:bg-green-600">
+          </div>
+        </form>
+        <div class="options">
+          <p><a href="./index.html">Already have an account?</a></p>
+        </div>
       </div>
+    </div>
   </section>
 </div>

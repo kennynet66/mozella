@@ -1,11 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  a {
-      text-decoration: none;
-      color: #000;
-  }
-}
+
 
 nav{
   display: flex;
@@ -74,32 +67,6 @@ nav{
   flex-direction: column;
 }
 
-.input-div{
-  width: 100%;
-  margin-top: 10px;
-  margin: 5%;
-}
-
-#login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#email, #password, #name {
-  width: 100%;
-  background-color: transparent;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border: none;
-  border-bottom: 2px solid #000;
-}
-
-#password:focus, #email:focus, #name:focus {
-  background-color: #dbdbdb;
-  color: #ffffff;
-}
 
 .login-btn {
   width: 90%;

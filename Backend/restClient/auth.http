@@ -1,0 +1,18 @@
+### create a user
+POST http://localhost:4500/users/register
+Content-Type: application/json
+
+{
+    "userName":"kennynet66",
+    "email": "test@testmail.com",
+    "password": "12345678"
+}
+
+### login User
+POST http://localhost:4500/users/login
+Content-Type: application/json
+
+{
+    "email": "test@testmil.com",
+    "password": "12356789"
+}
