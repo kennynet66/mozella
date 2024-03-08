@@ -1,0 +1,8 @@
+### Create a team
+POST http://localhost:4500/teams/create
+Content-Type: application/json
+
+{
+    "teamName": "Manchester United",
+    "teamProfilePic": "../../../"
+}

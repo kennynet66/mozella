@@ -4,19 +4,19 @@ const app = express();
 
 // Configure dotenv
 import dotenv from 'dotenv';
-import authRoutes from './Routes/auth.routes';
+import authRoutes from './Routes/auth.Routes';
+import eventRoutes from './Routes/events.Routes';
+import teamRoutes from './Routes/teams.Routes';
+import venueRoutes from './Routes/venue.Routes';
 dotenv.config();
 
 app.use(json());
 
-// app.use((error: Error, req: Request, res: Response)=>{
-//     return res.status(500).json({
-//         error
-//     })
-// });
-
 // import auth routes
 app.use('/users', authRoutes);
+app.use('/events', eventRoutes);
+app.use('/teams', teamRoutes);
+app.use('/venues', venueRoutes);
 
 // Start the server on a port
 const PORT = process.env.PORT

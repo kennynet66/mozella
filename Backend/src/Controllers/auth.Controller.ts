@@ -1,7 +1,7 @@
 /* 
     @createUser - This is a function that gets the user details, validates them and stores into the database
     @loginUser - This is a function that attempts to authenticate/Login a user using jwt(Json Web Token) and returns respective responses according to the data received
- */
+*/
 
 import { Request, Response } from "express";
 import { User, login } from "../interface/user.Interface";
@@ -32,7 +32,7 @@ export const createUser = (async(req: Request, res: Response) =>{
         // 1. Check if a user with the provided email exists
          */
         const existingUser = (await pool.request()
-        .input('email', mssql.VarChar, userDetails.email)
+        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
         .execute('checkExistingUser')).recordset
 
         if(existingUser.length >= 1){
@@ -45,21 +45,14 @@ export const createUser = (async(req: Request, res: Response) =>{
 
         const result = (await pool.request()
         .input('userId', mssql.VarChar, userId)
-        .input('email', mssql.VarChar, userDetails.email)
+        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
         .input('password', mssql.VarChar, hashPwd)
-        .input('userName', mssql.VarChar, userDetails.userName)
+        .input('userName', mssql.VarChar, userDetails.userName.trim().toLocaleLowerCase())
         .execute('createUser')
         ).rowsAffected
-
-        if(result[0] = 1){
             return res.status(200).json({
                 success: "User created successfully"
             })
-        } else {
-            return res.status(202).json({
-                error: "Unable to create account please try again later"
-            })
-        }
     } catch (error) {
         res.status(500).json({
             error
@@ -75,7 +68,7 @@ export const loginUser = (async (req: Request, res:  Response) =>{
         const pool = await mssql.connect(sqlConfig);
 
         const user = (await pool.request()
-        .input('email', mssql.VarChar, userDetails.email)
+        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
         .execute('loginUser')
         ).recordset
 

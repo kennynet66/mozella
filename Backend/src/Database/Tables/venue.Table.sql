@@ -5,8 +5,9 @@
     - 3. Availability of the venue
  */
 
- CREATE TABLE Venue(
-    venueId VARCHAR(255),
+ CREATE TABLE Venues(
+    venueId VARCHAR(255) NOT NULL PRIMARY KEY,
     venueName VARCHAR(255),
-    isAvailabe BIT DEFAULT 0 NOT NULL
+    venueImage VARCHAR(255),
+    isBooked BIT DEFAULT 0 NOT NULL
 )

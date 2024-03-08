@@ -11,14 +11,20 @@
  */
 
  CREATE TABLE Events(
-    eventId VARCHAR(255),
+    eventId VARCHAR(255) NOT NULL PRIMARY KEY,
     eventTitle VARCHAR(255),
     eventDescr text,
     eventVenue VARCHAR(255),
     eventDate DATETIME,
     eventImage VARCHAR(255),
     homeTeam VARCHAR(255),
-    awayTeam VARCHAR(255)
+    awayTeam VARCHAR(255),
+    CONSTRAINT fk_Home_Team FOREIGN KEY(homeTeam)
+    REFERENCES Teams(teamId),
+    CONSTRAINT fk_Away_Team FOREIGN KEY(awayTeam)
+    REFERENCES Teams(teamId),
+    CONSTRAINT fk_Venue FOREIGN KEY(eventVenue)
+    REFERENCES Venues(venueId),
 )
 
-SELECT * FROM Events
+DROP TABLE Events

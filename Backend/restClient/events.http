@@ -1,0 +1,13 @@
+### Create a new event
+POST http://localhost:4500/events/create
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlY2U0YjZjZi00M2JmLTQ4NmUtOTdiNi03YWQ0ZTA0NzdjOWEiLCJ1c2VyTmFtZSI6Imtlbm55bmV0NjYiLCJlbWFpbCI6InRlc3RAdGVzdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMDUkSmQ2SHFnTHdYVmo5dFBoRnk0OS4xdUhVNlViQ1VkbU96cFJocUduTFJFb2c1RHdpV1VNZ20iLCJpYXQiOjE3MDk5MjI1NjYsImV4cCI6MTcxMDE4MTc2Nn0.YQ31Kq2JqeZuZxGZaO5_ZoqrJrKe9oXTTAXpiq0I7O8
+
+{
+    "eventTitle": "THIS IS A TITLE",
+    "eventDescr": "What a match",
+    "eventVenue": "af54f63a-bf15-4f20-ab22-df29f1cc2465",
+    "eventImage": "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltdae5a8354c929a33/642e9e80b61c1463b63216ba/murcia_(72).png?auto=webp&format=pjpg&width=828&quality=60",
+    "homeTeam": "6eb7ea92-4532-49fb-9e19-06a1527b7477",
+    "awayTeam": "bf6c3593-4966-40e0-ba34-e7b96ae79570"
+}
