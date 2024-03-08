@@ -1,42 +1,3 @@
-
-
-nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 10vh;
-  padding: 0 10px;
-}
-
-.logo > a {
-  font-weight: bold;
-  font-size: 25px;
-  color: #ffffff;
-}
-
-.logo > a:hover{
-  color: #000;
-}
-
-.links {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  list-style-type: none;
-}
-
-.links > li > a {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.links > li > a :hover{
-  font-size: 20px;
-  font-weight: bold;
-  color: #dbdbdb;
-}
-
 .content {
   display: flex;
   justify-content: center;
@@ -96,4 +57,12 @@ nav{
       color: #ffffff;
       width: 300px;
   }
+}
+
+#error {
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  /* align-self: center; */
+  /* justify-self: center; */
 }

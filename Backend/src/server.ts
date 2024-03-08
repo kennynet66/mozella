@@ -8,9 +8,11 @@ import authRoutes from './Routes/auth.Routes';
 import eventRoutes from './Routes/events.Routes';
 import teamRoutes from './Routes/teams.Routes';
 import venueRoutes from './Routes/venue.Routes';
+import cors from 'cors';
 dotenv.config();
 
 app.use(json());
+app.use(cors())
 
 // import auth routes
 app.use('/users', authRoutes);

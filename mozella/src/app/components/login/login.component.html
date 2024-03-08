@@ -1,24 +1,31 @@
 <div class="container">
+  <div class="messages">
+    <div *ngIf="errorDiv" class="error-message text-white p-1 m-2 bg-red-400 text-center rounded-md" id="errors">{{errorMsg}}</div>
+    <div *ngIf="successDiv"  class="success-message text-white p-1 m-2 bg-green-400 text-center rounded-md" id="errors">{{successMsg}}</div>
+  </div>
   <section class="content">
       <div class="login-view">
           <img class="login-img" src="https://www.willenlake.org.uk/media/5980/football-pitches-media-banner-image.jpg?width=2048&format=webp" alt="">
           <div class="login-form">
-              <form id="login-form">
-                  <h1>Login</h1>
-                  <div class="input-div">
+              <form id="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                  <h1 class="font-bold text-xl">Login</h1>
+                  <div class="m-2">
                       <label for="email">Email:</label> <br>
-                      <input type="text" name="email" id="email">
-                  </div>
-                  <div class="input-div">
+                      <input type="text" class="p-3 w-full rounded-md" name="email" id="email" placeholder="Email" formControlName="email">
+                      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && !loginForm.get('email')?.dirty" class="text-red-500" >Email is required</div>
+                      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.dirty" class="text-red-500" >Invalid format</div>
+                    </div>
+                    <div class="m-2">
                       <label for="email">Password:</label> <br>
-                      <input type="password" name="password" id="password" autocomplete="false">
+                      <input type="password" class="p-3 w-full rounded-md" name="password" id="password" placeholder="Password" formControlName="password">
+                      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && !loginForm.get('password')?.dirty" class="text-red-500" >Password is required</div>
                   </div>
-                  <div class="input-div">
-                      <input type="submit" value="login" class="login-btn">
+                  <div class="m-2">
+                      <input type="submit" class="p-2 w-full bg-green-500 rounded-md text-white hover:bg-green-600" value="login">
                   </div>
               </form>
               <div class="options">
-                  <p><a href="./register.html">Don't have an account?</a></p>
+                  <p><a routerLink="/signup">Don't have an account?</a></p>
               </div>
           </div>
       </div>
