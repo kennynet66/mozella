@@ -12,18 +12,19 @@ import { createUserSchema } from "../Validators/auth.Validators";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { ExtendedUserRequest } from "../Middlewares/verifyToken";
 
 dotenv.config();
 
-export const createUser = (async(req: Request, res: Response) =>{
+export const createUser = (async (req: Request, res: Response) => {
     try {
-        const userDetails:User = req.body;
+        const userDetails: User = req.body;
         const pool = await mssql.connect(sqlConfig);
         const userId = v4();
 
         // Validate the request body
         const { error } = createUserSchema.validate(req.body);
-        if(error){
+        if (error) {
             return res.status(201).json({
                 error: error.details[0].message
             })
@@ -32,10 +33,10 @@ export const createUser = (async(req: Request, res: Response) =>{
         // 1. Check if a user with the provided email exists
          */
         const existingUser = (await pool.request()
-        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
-        .execute('checkExistingUser')).recordset
+            .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
+            .execute('checkExistingUser')).recordset
 
-        if(existingUser.length >= 1){
+        if (existingUser.length >= 1) {
             return res.status(201).json({
                 error: "Email already registered"
             })
@@ -44,15 +45,15 @@ export const createUser = (async(req: Request, res: Response) =>{
         const hashPwd = await bcrypt.hash(userDetails.password, 5)
 
         const result = (await pool.request()
-        .input('userId', mssql.VarChar, userId)
-        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
-        .input('password', mssql.VarChar, hashPwd)
-        .input('userName', mssql.VarChar, userDetails.userName.trim().toLocaleLowerCase())
-        .execute('createUser')
+            .input('userId', mssql.VarChar, userId)
+            .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
+            .input('password', mssql.VarChar, hashPwd)
+            .input('userName', mssql.VarChar, userDetails.userName.trim().toLocaleLowerCase())
+            .execute('createUser')
         ).rowsAffected
-            return res.status(200).json({
-                success: "User created successfully"
-            })
+        return res.status(200).json({
+            success: "User created successfully"
+        })
     } catch (error) {
         res.status(500).json({
             error
@@ -60,7 +61,7 @@ export const createUser = (async(req: Request, res: Response) =>{
     }
 });
 
-export const loginUser = (async (req: Request, res:  Response) =>{
+export const loginUser = (async (req: Request, res: Response) => {
     try {
 
         const userDetails: login = req.body
@@ -68,15 +69,15 @@ export const loginUser = (async (req: Request, res:  Response) =>{
         const pool = await mssql.connect(sqlConfig);
 
         const user = (await pool.request()
-        .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
-        .execute('loginUser')
+            .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
+            .execute('loginUser')
         ).recordset
 
-        if(user.length >= 1){
+        if (user.length >= 1) {
             const isPwd = await bcrypt.compare(userDetails.password, user[0].password);
 
-            if(!isPwd){
-                return  res.status(201).json({
+            if (!isPwd) {
+                return res.status(201).json({
                     error: "Incorrect password"
                 })
             }
@@ -93,10 +94,18 @@ export const loginUser = (async (req: Request, res:  Response) =>{
                 error: "User not found"
             })
         }
-        
+
     } catch (error) {
         return res.status(500).json({
             error: error
         })
     }
 });
+
+export const checkUserDetails = (async (req: ExtendedUserRequest, res: Response) => {
+    if (req.info) {
+        return res.json({
+            info: req.info
+        })
+    }
+})

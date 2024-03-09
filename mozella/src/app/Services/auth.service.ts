@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, loginDetails, loginResponse, registerUserResponse } from '../Interfaces/user.Interface';
+import { User, loginDetails, loginResponse, registerUserResponse, userDetailsResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,12 @@ export class AuthService {
 
   loginUser(userDetails: loginDetails){
     return this.http.post<loginResponse>('http://localhost:4500/users/login', userDetails)
+  }
+  checkUserDetails(token:string){
+    return this.http.get<userDetailsResponse>('http://localhost:4500/users/details', {
+      headers: {
+        token
+      }
+    })
   }
 }

@@ -23,7 +23,8 @@
           <div class="m-2">
             <label for="password">Password:</label><br>
             <input type="password" type="password" placeholder="password" class="p-3 w-full rounded-md" formControlName="password">
-            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-600">Password is required</div>
+            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched && !signupForm.get('password')?.dirty" class="text-red-600">Password is required</div>
+            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched && signupForm.get('password')?.dirty" class="text-red-600">Minimum password length is 8 characters</div>
           </div>
           <div class="m-2">
             <input type="submit" value="Create Account" class="p-2 w-full bg-green-500 rounded-md text-white hover:bg-green-600">

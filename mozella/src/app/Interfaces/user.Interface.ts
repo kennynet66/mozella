@@ -19,3 +19,14 @@ export interface loginResponse {
   token: string,
   error: string,
 }
+
+export interface userDetailsResponse {
+  info: {
+    userId: string,
+    userName: string,
+    email: string,
+    password: string
+    isAdmin: boolean
+  }
+  error: string
+}
