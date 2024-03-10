@@ -21,3 +21,11 @@ Content-Type: application/json
 
 GET http://localhost:4500/users/details
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlY2U0YjZjZi00M2JmLTQ4NmUtOTdiNi03YWQ0ZTA0NzdjOWEiLCJ1c2VyTmFtZSI6Imtlbm55bmV0NjYiLCJlbWFpbCI6InRlc3RAdGVzdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMDUkSmQ2SHFnTHdYVmo5dFBoRnk0OS4xdUhVNlViQ1VkbU96cFJocUduTFJFb2c1RHdpV1VNZ20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzA5OTc3NDkxLCJleHAiOjE3MTAyMzY2OTF9.gCPYurOw8Kks818g4V4dra4akCwgu6Hkj-kWufkgTa8
+
+### Reset password
+POST http://localhost:4500/users/reset
+Content-Type: application/json
+
+{
+    "email": "test@testmail.com"
+}

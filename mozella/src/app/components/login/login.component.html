@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="messages">
     <div *ngIf="errorDiv" class="error-message text-white p-1 m-2 bg-red-400 text-center rounded-md" id="errors">{{errorMsg}}</div>
@@ -26,6 +27,7 @@
               </form>
               <div class="options">
                   <p><a routerLink="/signup">Don't have an account?</a></p>
+                  <p><a routerLink="/reset">Forgot password?</a></p>
               </div>
           </div>
       </div>

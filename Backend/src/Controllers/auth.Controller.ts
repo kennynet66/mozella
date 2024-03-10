@@ -109,3 +109,47 @@ export const checkUserDetails = (async (req: ExtendedUserRequest, res: Response)
         })
     }
 })
+/*
+    first check if the email provided from the request body exists
+ */
+export const resetPassword = (async (req:Request, res: Response)=>{
+    try {
+        const token = req.headers.token;
+        const { email } = req.body;
+
+        const pool = await mssql.connect(sqlConfig);
+
+        const exists = (await pool.request()
+        .input('email', mssql.VarChar, email.trim().toLocaleLowerCase())
+        .execute('checkExistingUser')
+        ).recordset
+
+        if(exists.length >= 1 ){
+            const resetPass = (await pool.request()
+            .input('email', mssql.VarChar, email.trim().toLocaleLowerCase())
+            .execute('resetPass')
+            ).rowsAffected
+
+            if(resetPass[0] >= 1){
+                return res.status(200).json({
+                success: "Check your email for a password reset email"
+            })
+            } else {
+                return res.status(202).json({
+                    error: "Password reset email already sent"
+                })
+            }
+            
+        } else {
+            res.status(202).json({
+                error: "Email does not exist"
+            })
+        }
+
+    } catch (error) {
+     return res.status(500).json({
+        error
+     })   
+    }
+})
+

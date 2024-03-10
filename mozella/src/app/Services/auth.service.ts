@@ -23,4 +23,7 @@ export class AuthService {
       }
     })
   }
+  resetPassword(email: string){
+    return this.http.post<{success: string, error: string}>('http://localhost:4500/users/reset', email);
+  }
 }

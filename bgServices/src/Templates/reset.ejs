@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset password</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Password reset requested for, <%=@email%></th>
+        </tr>
+        <tr>
+            <td>
+                <h1>Hi, <%=@username%></h1>
+                <p>A password reset was requested for your mozella account</p>
+                <a href="http://localhost:4500/reset/<%=@token%>"></a>
+                <p>If you were not the one who requested it, safely ignore this email</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
