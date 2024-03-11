@@ -29,3 +29,12 @@ Content-Type: application/json
 {
     "email": "test@testmail.com"
 }
+
+### Update password
+POST http://localhost:4500/users/update-pass
+Content-Type: application/json
+
+{
+    "password": "Boomplay@1",
+    "email": "kennynet66@gmail.com"
+}

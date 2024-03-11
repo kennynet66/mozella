@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 function createTransport(config: mail_configs){
-    const transporter = nodemailer.createTransport();
+    const transporter = nodemailer.createTransport(config);
 
     return transporter;
 }

@@ -4,13 +4,16 @@ import mssql from 'mssql'
 import { sqlConfig } from '../Config/sql.Config';
 import { sendMail } from '../Helpers/emailHelper';
 import jwt from 'jsonwebtoken';
+import path from 'path';
 
 export const resetPassword = async ()=>{
         const pool = await mssql.connect(sqlConfig);
 
-        const users = (await pool.request().query('SELECT * FROM Users WHERE password = 0')).recordset;
+        const users = (await pool.request().query('SELECT * FROM Users WHERE isReset = 1')).recordset;
 
         console.log(users);
+
+        
 
         for(let user of users){
             const token = generateResetToken(user.email);

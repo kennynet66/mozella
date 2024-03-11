@@ -153,3 +153,34 @@ export const resetPassword = (async (req:Request, res: Response)=>{
     }
 })
 
+export const updatePassword = (async(req: Request, res: Response)=>{
+    try {
+        // const email = req.headers.email as string;
+        const { password, email } = req.body;
+        console.log(req.body);
+        
+
+        const hashpwd = await bcrypt.hash(password, 5);
+        const pool = await mssql.connect(sqlConfig);
+
+        const request = (await pool.request()
+        .input('email', mssql.VarChar, email.trim().toLocaleLowerCase())
+        .input('password',mssql.VarChar, hashpwd)
+        .execute('updatePassword')
+        ).rowsAffected
+        
+        if(request[0] >= 0){
+            return res.status(200).json({
+                success: "Password updated successfully"
+            })
+        } else{
+            return res.status(202).json({
+                error: "There was an error updating the password"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
+})

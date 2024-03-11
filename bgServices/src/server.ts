@@ -5,8 +5,8 @@ import { resetPassword } from './mailServices/resetpassword';
 const app = express();
 
 const run = async () =>{
-    cron.schedule('*/10 * * * * *', async()=>{
-        console.log("Checking for a password request");
+    cron.schedule('*/5 * * * * *', async()=>{
+        console.log("Checking for a password reset request");
         await resetPassword();
     })
 }

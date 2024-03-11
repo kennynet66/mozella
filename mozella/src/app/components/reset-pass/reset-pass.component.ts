@@ -20,11 +20,14 @@ export class ResetPassComponent {
   successDiv = false;
   errorDiv = false;
 
+  visible = false;
+
   displaySuccess(msg: string){
     this.successMsg = msg;
     this.resetForm.reset();
     this.successDiv = true;
     setTimeout(() => {
+      this.visible = true;
       this.successDiv = false
     }, 2000);
   }
@@ -53,6 +56,8 @@ export class ResetPassComponent {
           this.displayErrors(res.error)
         }
       })
+    } else {
+      this.displayErrors('Please fill in all the fields correctly')
     }
   }
 }
